@@ -1,5 +1,12 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 alias pve="python3 -m pipenv shell"
-alias python="/usr/bin/python3"
+# alias python="/usr/bin/python3"
 alias c="clear"
 alias b="git branch"
 alias s="git status"
@@ -14,13 +21,16 @@ alias vrc="nvim ~/.config/nvim/init.vim"
 alias t="taskell ~"
 alias gssh=". ~/git_ssh_setup.sh"
 alias lp="cd ~/repos/labs-lbxcore-proxy"
-alias ls="nnn -d -A -P p"
+alias ls="nnn -e -A -a -H"
+# alias ps="~/repos/lbx_cli_tools/get_broadband_submission.sh"
 
 
+export BROWSER="powershell.exe /C start"
 export NNN_BATTHEME="TwoDark"
 export EDITOR="nvim"
-export NNN_FIFO="/tmp/nnn.fifo nnn"
+export NNN_FIFO="/tmp/nnn.fifo"
 export NNN_PLUG='f:finder;o:fzopen;p:preview-tui;d:diffs;t:nmount;v:imgview'
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 
 
 # If you come from bash you might have to change your $PATH.
@@ -35,7 +45,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 #ZSH_THEME="agnoster"
-ZSH_THEME="eastwood"
+#
+# ZSH_THEME="eastwood"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -128,3 +140,16 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 PATH=$HOME/go/bin:$PATH
 # export PATH="~/.local/bin"
+
+if [ -e /home/bstefansen/.nix-profile/etc/profile.d/nix.sh ]; then . /home/bstefansen/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# eval "$(direnv hook zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# run noefetch
+# neofetch
+
+# eval "$(starship init zsh)"
